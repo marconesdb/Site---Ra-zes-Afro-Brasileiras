@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raízes Afro-Brasileiras - Memória e Cultura</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --cor-primaria: #8B4513;
+            --cor-secundaria: #DAA520;
+            --cor-destaque: #FF6B35;
+            --cor-escura: #2C1810;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFF8F0;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--cor-escura) 0%, var(--cor-primaria) 100%);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--cor-secundaria) !important;
+        }
+
+        .nav-link {
+            color: #FFF !important;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--cor-secundaria) !important;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%238B4513" width="1200" height="600"/><path fill="%23DAA520" opacity="0.3" d="M0 300 Q300 200 600 300 T1200 300 V600 H0 Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 1.3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .section-title {
+            color: var(--cor-primaria);
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--cor-secundaria);
+            border-radius: 2px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+            color: white;
+            font-weight: bold;
+            padding: 20px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--cor-secundaria);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .timeline-item h5 {
+            color: var(--cor-primaria);
+            font-weight: bold;
+        }
+
+        .carousel-item {
+            height: 400px;
+            background-color: var(--cor-primaria);
+        }
+
+        .carousel-caption {
+            background: rgba(0,0,0,0.7);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .btn-custom {
+            background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: white;
+        }
+
+        footer {
+            background: var(--cor-escura);
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--cor-primaria);
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: var(--cor-primaria);
+            color: white;
+        }
+
+        .badge-custom {
+            background-color: var(--cor-destaque);
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-masks-theater"></i> Raízes Afro-Brasileiras</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#inicio">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#historia">História</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#cultura">Cultura</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#preservacao">Preservação</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-section">
+        <div class="container">
+            <h1 class="animate__animated animate__fadeInDown">Raízes Afro-Brasileiras</h1>
+            <p class="animate__animated animate__fadeInUp">Preservando a Memória, Celebrando a Cultura</p>
+            <a href="#sobre" class="btn btn-custom mt-3">Explore Nossa História</a>
+        </div>
+    </section>
+
+    <!-- Sobre Section -->
+    <section id="sobre" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Sobre o Projeto</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4">
+                    <p class="lead">Este projeto visa preservar e divulgar a rica história e cultura afro-brasileira, cumprindo com a Lei Federal nº 10.639/2003, que determina o ensino obrigatório da história e cultura africana e afro-brasileira nas escolas.</p>
+                    <p>Nossa missão é criar um espaço digital acessível onde estudantes, professores e toda a comunidade possam conhecer e valorizar as contribuições africanas para a formação da identidade brasileira.</p>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="stat-box">
+                                <div class="stat-number">500+</div>
+                                <p class="mb-0">Anos de História</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="stat-box">
+                                <div class="stat-number">56%</div>
+                                <p class="mb-0">População Negra</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carrossel de Destaques -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Destaques Culturais</h2>
+            <div id="carouselDestaques" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselDestaques" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#carouselDestaques" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#carouselDestaques" data-bs-slide-to="2"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="d-flex align-items-center justify-content-center h-100">
+                            <div class="carousel-caption">
+                                <h3><i class="fas fa-drum"></i> Capoeira</h3>
+                                <p>Arte marcial brasileira que combina dança, música e acrobacia, nascida da resistência dos escravizados.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="d-flex align-items-center justify-content-center h-100">
+                            <div class="carousel-caption">
+                                <h3><i class="fas fa-music"></i> Samba</h3>
+                                <p>Gênero musical de origem africana, símbolo da cultura brasileira e Patrimônio Imaterial da Humanidade.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="d-flex align-items-center justify-content-center h-100">
+                            <div class="carousel-caption">
+                                <h3><i class="fas fa-praying-hands"></i> Candomblé</h3>
+                                <p>Religião de matriz africana que preserva tradições ancestrais dos povos iorubás, jejês e bantos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselDestaques" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselDestaques" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- História Section -->
+    <section id="historia" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Linha do Tempo Histórica</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h5><i class="fas fa-calendar-alt"></i> 1500-1888</h5>
+                    <h6>Período Escravista</h6>
+                    <p>Chegada forçada de milhões de africanos ao Brasil. Apesar da violência e opressão, mantiveram vivas suas tradições culturais, religiosas e conhecimentos.</p>
+                </div>
+                <div class="timeline-item">
+                    <h5><i class="fas fa-calendar-alt"></i> 1888</h5>
+                    <h6>Abolição da Escravatura</h6>
+                    <p>Lei Áurea oficializa o fim da escravidão, mas sem políticas de inclusão, iniciando um longo processo de luta por direitos e igualdade.</p>
+                </div>
+                <div class="timeline-item">
+                    <h5><i class="fas fa-calendar-alt"></i> 1978</h5>
+                    <h6>Movimento Negro Unificado</h6>
+                    <p>Criação do MNU, marco na organização política do movimento negro brasileiro na luta contra o racismo e por direitos civis.</p>
+                </div>
+                <div class="timeline-item">
+                    <h5><i class="fas fa-calendar-alt"></i> 2003</h5>
+                    <h6>Lei 10.639/2003</h6>
+                    <p>Torna obrigatório o ensino da história e cultura afro-brasileira nas escolas, reconhecendo a importância dessa educação.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cultura Section -->
+    <section id="cultura" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Manifestações Culturais</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-music"></i> Música e Dança
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success"></i> Samba</li>
+                                <li><i class="fas fa-check text-success"></i> Maracatu</li>
+                                <li><i class="fas fa-check text-success"></i> Jongo</li>
+                                <li><i class="fas fa-check text-success"></i> Afoxé</li>
+                                <li><i class="fas fa-check text-success"></i> Congada</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-utensils"></i> Culinária
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success"></i> Acarajé</li>
+                                <li><i class="fas fa-check text-success"></i> Feijoada</li>
+                                <li><i class="fas fa-check text-success"></i> Vatapá</li>
+                                <li><i class="fas fa-check text-success"></i> Caruru</li>
+                                <li><i class="fas fa-check text-success"></i> Moqueca</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-hands-praying"></i> Religiosidade
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success"></i> Candomblé</li>
+                                <li><i class="fas fa-check text-success"></i> Umbanda</li>
+                                <li><i class="fas fa-check text-success"></i> Congado</li>
+                                <li><i class="fas fa-check text-success"></i> Jurema</li>
+                                <li><i class="fas fa-check text-success"></i> Batuque</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Preservação Section -->
+    <section id="preservacao" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Preservação da Memória</h2>
+            <div class="row mb-4">
+                <div class="col-md-4 mb-3">
+                    <div class="icon-box">
+                        <i class="fas fa-archive"></i>
+                    </div>
+                    <h4 class="text-center">Documentação</h4>
+                    <p class="text-center">Digitalização e preservação de documentos históricos, fotografias e registros da cultura afro-brasileira.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="icon-box">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4 class="text-center">Educação</h4>
+                    <p class="text-center">Materiais didáticos e recursos educacionais para implementação da Lei 10.639/2003 nas escolas.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="icon-box">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4 class="text-center">Comunidade</h4>
+                    <p class="text-center">Colaboração com comunidades quilombolas, terreiros e grupos culturais para registro de memórias.</p>
+                </div>
+            </div>
+
+            <!-- Accordion de Informações -->
+            <div class="accordion" id="accordionPreservacao">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                            Museus e Arquivos Digitais
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionPreservacao">
+                        <div class="accordion-body">
+                            O Museu Afro Digital da UFBA é uma iniciativa pioneira na preservação digital da memória africana e afro-brasileira. Através da digitalização de documentos, fotografias e depoimentos, o projeto democratiza o acesso ao patrimônio cultural e histórico.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                            Patrimônio Imaterial
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionPreservacao">
+                        <div class="accordion-body">
+                            Manifestações culturais como o Samba de Roda, Jongo e Capoeira são reconhecidos como Patrimônio Cultural Imaterial, garantindo sua proteção e valorização para as futuras gerações.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                            Repatriação Digital
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionPreservacao">
+                        <div class="accordion-body">
+                            Processo de trazer de volta ao Brasil, de forma digital, documentos históricos que se encontram em arquivos estrangeiros, tornando-os acessíveis para pesquisadores e a comunidade.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personalidades Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Personalidades Importantes</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <div class="icon-box">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h5>Zumbi dos Palmares</h5>
+                            <span class="badge badge-custom">Líder Quilombola</span>
+                            <p class="mt-3">Símbolo da resistência negra contra a escravidão no Brasil.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <div class="icon-box">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h5>Machado de Assis</h5>
+                            <span class="badge badge-custom">Escritor</span>
+                            <p class="mt-3">Maior nome da literatura brasileira, fundador da Academia Brasileira de Letras.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <div class="icon-box">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h5>Carolina Maria de Jesus</h5>
+                            <span class="badge badge-custom">Escritora</span>
+                            <p class="mt-3">Autora de "Quarto de Despejo", relato impactante sobre a vida na favela.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <div class="icon-box">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h5>Mãe Menininha</h5>
+                            <span class="badge badge-custom">Ialorixá</span>
+                            <p class="mt-3">Líder religiosa do Candomblé, símbolo da resistência cultural africana.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section id="contato" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <h4>Contribua com o Projeto</h4>
+                    <p>Você pode colaborar doando documentos, fotografias, depoimentos ou materiais relacionados à história e cultura afro-brasileira.</p>
+                    <div class="mb-3">
+                        <i class="fas fa-envelope text-primary"></i> <strong>Email:</strong> contato@raizesafrobr.org
+                    </div>
+                    <div class="mb-3">
+                        <i class="fas fa-phone text-primary"></i> <strong>Telefone:</strong> (71) 3283-5555
+                    </div>
+                    <div class="mb-3">
+                        <i class="fas fa-map-marker-alt text-primary"></i> <strong>Endereço:</strong> Universidade Federal da Bahia - Salvador, BA
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Seu Nome" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Seu Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="4" placeholder="Sua Mensagem" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-custom w-100">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5><i class="fas fa-masks-theater"></i> Raízes Afro-Brasileiras</h5>
+                    <p>Preservando e celebrando a rica história e cultura afro-brasileira para as futuras gerações.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Links Úteis</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://museuafrodigital.ufba.br/" target="_blank" class="text-white text-decoration-none">Museu Afro Digital UFBA</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Lei 10.639/2003</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">IPHAN - Patrimônio Imaterial</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Redes Sociais</h5>
+                    <div>
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-2x"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-2x"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-youtube fa-2x"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-twitter fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="text-center">
+                <p>&copy; 2024 Raízes Afro-Brasileiras. Projeto Educacional - Bootstrap Framework</p>
+                <p class="small">Desenvolvido em cumprimento à Lei 10.639/2003</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
