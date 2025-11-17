@@ -237,10 +237,10 @@ in the Software without restriction...
 
 ## 👨‍💻 Autor
 
-**Seu Nome**
-- GitHub: [@seu-usuario](https://github.com/seu-usuario)
-- LinkedIn: [Seu Nome](https://linkedin.com/in/seu-perfil)
-- Email: seuemail@exemplo.com
+**Marcone Silva de Brito**
+- GitHub: [@marconesdb](https://github.com/marconesdb)
+- LinkedIn: [Marcone Silva de Brito](https://www.linkedin.com/in/marconesb/)
+- Email: marconebritt@gmail.com
 
 ## 🙏 Agradecimentos
 
@@ -296,4 +296,4 @@ Para dúvidas, sugestões ou problemas:
 
 ---
 
-**Última atualização:** Novembro de 2024
+**Última atualização:** Novembro de 2025
